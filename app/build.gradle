@@ -1,0 +1,105 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
+    defaultConfig {
+        applicationId "com.abrahamlay.newmovieapp"
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "env"
+    productFlavors {
+        development {
+            dimension "env"
+            applicationId "com.abrahamlay.newsearchgithubuser.dev"
+            buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+        }
+        staging {
+            dimension "env"
+            applicationId "com.abrahamlay.newsearchgithubuser.dev"
+            buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+        }
+        production {
+            dimension "env"
+            applicationId 'com.abrahamlay.newsearchgithubuser'
+            buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation kotlinStdLib
+
+    implementation project(':domain')
+    implementation project(':data')
+
+    //androidx
+    implementation support.appcompat
+    implementation support.constraint
+    implementation support.recyclerview
+    implementation support.core
+    implementation support.design
+
+    //image processor
+    implementation libs.glide
+
+    implementation libs.rxjava
+
+
+    //database
+    implementation support.room
+    kapt support.roomCompiler
+    implementation support.roomCommon
+
+
+    // android architecture component
+    implementation support.pagingRuntime
+    implementation support.pagingRxJava
+
+    //navigation
+    implementation support.navigationUi
+    implementation support.navigationFragment
+
+    //dependency injection
+    implementation support.koin
+    implementation support.koinScope
+    implementation support.koinViewmodel
+
+    //network
+    implementation libs.retrofit
+
+    testImplementation test.jUnit
+    androidTestImplementation test.testRunner
+    androidTestImplementation test.espresso
+}

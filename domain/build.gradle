@@ -1,0 +1,30 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    def test = rootProject.ext.test
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation kotlinStdLib
+
+    //appcompat
+    implementation support.appcompat
+
+    implementation libs.rxjava
+    implementation libs.gson
+//    implementation libs.androidAnnotations
+
+
+    // android architecture component
+    implementation support.pagingRuntime
+    implementation support.pagingRxJava
+
+    testImplementation test.jUnit
+    testImplementation test.testRunner
+    testImplementation test.espresso
+}
+
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+}
