@@ -2,7 +2,7 @@ package com.abrahamlay.data.repository
 
 import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
-import com.abrahamlay.data.common.applyIoScheduler
+import com.abrahamlay.data.common.applyJobExecutorScheduler
 import com.abrahamlay.data.datasource.api.UserDataSource
 import com.abrahamlay.data.datasource.database.UserDatabaseDataSource
 import com.abrahamlay.domain.common.ResultState
@@ -27,8 +27,8 @@ class UserRepositoryImpl(
         val boundaryCallback = UserRepoBoundaryCallback(apiSource, query, databaseDataSource)
         val data = RxPagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
             .setBoundaryCallback(boundaryCallback)
-            .buildFlowable(BackpressureStrategy.LATEST)
-        return data.applyIoScheduler().map { d ->
+            .buildFlowable(BackpressureStrategy.BUFFER)
+        return data.applyJobExecutorScheduler().map { d ->
             if (d.size > 0)
                 ResultState.Success(d) as ResultState<PagedList<SearchResultEntity.ItemsItem>>
             else
@@ -38,6 +38,6 @@ class UserRepositoryImpl(
     }
 
     companion object {
-        private const val DATABASE_PAGE_SIZE = 20
+        private const val DATABASE_PAGE_SIZE = 10
     }
 }

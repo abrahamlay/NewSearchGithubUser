@@ -6,6 +6,7 @@ import com.abrahamlay.data.datasource.BaseDataSource
 import com.abrahamlay.domain.common.ResultState
 import com.abrahamlay.domain.entity.SearchResultEntity
 import io.reactivex.Single
+import retrofit2.HttpException
 
 /**
  * Created by Abraham Lay on 2019-11-19.

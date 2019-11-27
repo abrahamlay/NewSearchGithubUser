@@ -98,6 +98,7 @@ dependencies {
 
     //network
     implementation libs.retrofit
+    implementation libs.okhttp
 
     testImplementation test.jUnit
     androidTestImplementation test.testRunner

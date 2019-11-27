@@ -1,8 +1,7 @@
 package com.abrahamlay.data.datasource.api
 
-import androidx.paging.DataSource
 import com.abrahamlay.data.api.UserApi
-import com.abrahamlay.data.common.applyIoScheduler
+import com.abrahamlay.data.common.applyJobExecutorScheduler
 import com.abrahamlay.data.mapper.map
 import com.abrahamlay.domain.entity.SearchResultEntity
 import io.reactivex.Single
@@ -15,6 +14,6 @@ class UserDataSourceImpl(private val api: UserApi) :
 
     override fun searchUser(query: String, page: Int): Single<SearchResultEntity> =
         api.searchUsers(query, page)
-            .applyIoScheduler()
+            .applyJobExecutorScheduler()
             .map { it.map() }
 }

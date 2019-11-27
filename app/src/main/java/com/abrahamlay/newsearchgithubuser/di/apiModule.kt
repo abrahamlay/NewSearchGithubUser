@@ -3,6 +3,7 @@ package com.abrahamlay.newsearchgithubuser.di
 import com.abrahamlay.data.api.UserApi
 import com.abrahamlay.newsearchgithubuser.BuildConfig
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -26,6 +27,15 @@ val apiModule = module {
     single<UserApi> { get<Retrofit>().create(UserApi::class.java) }
 }
 
-private fun okHttpBuilder() = OkHttpClient.Builder()
+private fun okHttpBuilder(): OkHttpClient.Builder {
+    val logging = HttpLoggingInterceptor()
+    logging.level =
+        if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+        else HttpLoggingInterceptor.Level.NONE
+
+
+    return OkHttpClient
+        .Builder().addInterceptor(logging)
+}
 
 private fun okHttp() = okHttpBuilder().build()

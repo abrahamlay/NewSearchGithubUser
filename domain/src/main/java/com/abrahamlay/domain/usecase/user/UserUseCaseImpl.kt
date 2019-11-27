@@ -10,10 +10,10 @@ import io.reactivex.Flowable
  * Created by Abraham Lay on 2019-11-22.
  */
 
-class UserUsecaseImpl(
+class UserUseCaseImpl(
     private val repository: UserRepository
-) : UserUsecase {
-    override fun getUsers(params: UserUsecase.Params): Flowable<ResultState<PagedList<SearchResultEntity.ItemsItem>>> =
+) : UserUseCase {
+    override fun getUsers(params: UserUseCase.Params): Flowable<ResultState<PagedList<SearchResultEntity.ItemsItem>>> =
         repository.searchUsers(params.query, params.page)
 
 }

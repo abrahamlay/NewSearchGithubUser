@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.abrahamlay.data.common.applyIoScheduler
+import com.abrahamlay.data.common.applyJobExecutorScheduler
 import com.abrahamlay.domain.common.ResultState
 import com.abrahamlay.domain.entity.SearchResultEntity
 import com.abrahamlay.newsearchgithubuser.R
@@ -48,7 +49,7 @@ class MainFragment : Fragment() {
         rv_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         rv_list.adapter = adapter
 
-        adapter.albumItemClickEvent.applyIoScheduler().subscribe {
+        adapter.albumItemClickEvent.applyJobExecutorScheduler().subscribe {
             Toast.makeText(context, it.login, Toast.LENGTH_SHORT).show()
         }
 
@@ -62,8 +63,14 @@ class MainFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                viewModel.getList(newText, 0)
-                showLoading(progress_bar_view)
+                (activity as MainActivity).searchView.postDelayed({
+                    if("" != newText){
+                        viewModel.getList(newText, 0)
+                        showLoading(progress_bar_view)
+                    } else {
+                        adapter.submitList(null)
+                    }
+                },500)
                 return true
             }
         })
@@ -75,19 +82,18 @@ class MainFragment : Fragment() {
                 hideLoading(progress_bar_view)
                 hideError(ErrorViewHolder(empty_view))
                 adapter.submitList(users.data)
+                adapter.setNetworkState(users)
             }
             is ResultState.Error -> {
                 hideLoading(progress_bar_view)
-                showError(ErrorViewHolder(empty_view), users.throwable.message)
-                Toast.makeText(context, users.throwable.message, Toast.LENGTH_SHORT).show()
+                showError(ErrorViewHolder(empty_view), users.getMessage())
+                Toast.makeText(context, users.getMessage(), Toast.LENGTH_SHORT).show()
                 adapter.submitList(users.data)
+                adapter.setNetworkState(users)
             }
             is ResultState.Loading -> {
-                hideLoading(progress_bar_view)
-                if(users.data.isEmpty()){
-                    showError(ErrorViewHolder(empty_view), resources.getString(R.string.error_empty_query))
-                }
                 adapter.submitList(users.data)
+                adapter.setNetworkState(users)
             }
         }
         isLoading = false

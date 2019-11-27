@@ -5,8 +5,6 @@ w
 Gdomain/src/main/java/com/abrahamlay/domain/repository/BaseRepository.kt,6/2/6263aef9ac638dadef79d14fcd7c2542ca426ab4
 <
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
-q
-Adomain/src/main/java/com/abrahamlay/domain/usecase/UserUsecase.kt,3/2/328cf13316f1a1a6d3379c60fb44e29c2937a123
 @
 app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 O
@@ -17,8 +15,6 @@ u
 Edata/src/main/java/com/abrahamlay/data/common/RxSchedulerExtension.kt,7/1/713865fd06215b55deb21bb4101679d7ac2c71be
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
-t
-Dapp/src/main/java/com/abrahamlay/newsearchgithubuser/MainActivity.kt,6/d/6d74dfa705c597a237dbc5b9acd117a54cfb006c
 z
 Japp/src/main/java/com/abrahamlay/newsearchgithubuser/di/viewModelModule.kt,a/1/a1f48013d996b06ef4971dd7a58a1619e4115063
 x
@@ -37,10 +33,6 @@ r
 Bdata/src/main/java/com/abrahamlay/data/mapper/DtoToEntityMapper.kt,f/0/f0cc5a881ad071d2aaa3be869f6033e3a1d28bfb
 m
 =data/src/main/java/com/abrahamlay/data/dto/SearchResultDto.kt,2/5/25e4e00698616a2c5fac0acd9c2d984d680367c4
-s
-Cdata/src/main/java/com/abrahamlay/data/datasource/UserDataSource.kt,6/5/65855ef99394f46355f92b583583db0381edf588
-w
-Gdata/src/main/java/com/abrahamlay/data/datasource/UserDataSourceImpl.kt,1/c/1cb627b8beac4b5639edf59fde8b5f1fc8af02e7
 w
 Gdomain/src/main/java/com/abrahamlay/domain/repository/UserRepository.kt,b/a/ba0ac79672dda9050f25ae7c8622252cae578745
 C
@@ -49,3 +41,19 @@ A
 data/build.gradle,7/2/72c2781d3d9ac8b82a3543f0fba5c796b2975232
 w
 Gdata/src/main/java/com/abrahamlay/data/repository/UserRepositoryImpl.kt,6/0/6094535659bedaa870e48ef63ada4dbd1e70c460
+
+Qapp/src/main/java/com/abrahamlay/newsearchgithubuser/ui/widget/ErrorViewHolder.kt,6/0/60a146f124961ee358ef936ae1db500b3abceac9
+w
+Gdata/src/main/java/com/abrahamlay/data/datasource/api/UserDataSource.kt,0/6/06d82aa9b81c9967d312a4e91252d43a7c630aa8
+~
+Napp/src/main/java/com/abrahamlay/newsearchgithubuser/ui/extention/Extention.kt,e/f/ef122408bcfbe651bcc1ba7b3fbd591677b4393a
+s
+Cdata/src/main/java/com/abrahamlay/data/mapper/DataToEntityMapper.kt,6/b/6bec8b6c6f16249e6cf783ccc5a51c28a6b6b3e1
+ˆ
+Xdata/src/main/java/com/abrahamlay/data/datasource/database/UserDatabaseDataSourceImpl.kt,c/f/cf827b785158e732768ef977405caff966a32e0b
+|
+Lapp/src/main/java/com/abrahamlay/newsearchgithubuser/ui/main/MainActivity.kt,c/1/c13fd0aa365d631a3f87b4d472e1807bf308d427
+|
+Lapp/src/main/java/com/abrahamlay/newsearchgithubuser/ui/main/MainFragment.kt,4/5/4584404c62d72761e8b4fe642ddc782f7bf41b96
+{
+Kapp/src/main/java/com/abrahamlay/newsearchgithubuser/ui/main/MainAdapter.kt,8/f/8f995451d4e774c48ba595d4c84206124b84b838

@@ -1,6 +1,7 @@
 package com.abrahamlay.newsearchgithubuser.di
 
 import androidx.room.Room
+import com.abrahamlay.data.common.JobExecutor
 import com.abrahamlay.data.datasource.api.UserDataSource
 import com.abrahamlay.data.datasource.api.UserDataSourceImpl
 import com.abrahamlay.data.datasource.database.UserDatabaseDataSource
@@ -15,7 +16,7 @@ import java.util.concurrent.Executors
  */
 
 val dataModule = module {
-    single<UserDatabaseDataSource> { UserDatabaseDataSourceImpl(get(), Executors.newSingleThreadExecutor()) }
+    single<UserDatabaseDataSource> { UserDatabaseDataSourceImpl(get(), JobExecutor()) }
     single<UserDataSource> { UserDataSourceImpl(get()) }
     single<UserDao> { Room.databaseBuilder(get(), MyDatabase::class.java, "mydatabase")
         .build().userDao() }

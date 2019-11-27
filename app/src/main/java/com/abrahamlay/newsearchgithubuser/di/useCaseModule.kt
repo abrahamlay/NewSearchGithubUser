@@ -2,8 +2,8 @@ package com.abrahamlay.newsearchgithubuser.di
 
 import com.abrahamlay.data.repository.UserRepositoryImpl
 import com.abrahamlay.domain.repository.UserRepository
-import com.abrahamlay.domain.usecase.user.UserUsecase
-import com.abrahamlay.domain.usecase.user.UserUsecaseImpl
+import com.abrahamlay.domain.usecase.user.UserUseCase
+import com.abrahamlay.domain.usecase.user.UserUseCaseImpl
 import org.koin.dsl.module
 
 /**
@@ -12,5 +12,5 @@ import org.koin.dsl.module
 
 val useCaseModule = module {
     factory<UserRepository> { UserRepositoryImpl(get(),get()) }
-    single<UserUsecase> { UserUsecaseImpl(get()) }
+    single<UserUseCase> { UserUseCaseImpl(get()) }
 }
